@@ -1,0 +1,77 @@
+{
+  "name": "codetrackr",
+  "displayName": "CodeTrackr",
+  "description": "A VS Code extension that logs your work every 30 minutes and commits a summary to a personal Git repo.",
+  "version": "0.0.1",
+  "publisher": "undefined_publisher",
+  "main": "./dist/extension.js",
+  "scripts": {
+    "start": "code --extensionDevelopmentPath=./",
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "vscode:prepublish": "npm run compile",
+    "prepublishOnly": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "activationEvents": [
+    "onCommand:codetrackr.initializeRepo",
+    "onCommand:codetrackr.startTracking",
+    "onCommand:codetrackr.authenticateWithGitHub"
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.2.0",
+    "@types/jest": "^26.0.24",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^14.14.6",
+    "@types/sinon": "^17.0.4",
+    "@types/vscode": "^1.98.0",
+    "minimatch": "^3.0.5",
+    "minimist": "^1.2.5",
+    "mkdirp": "^1.0.4",
+    "mocha": "^11.1.0",
+    "mock-require": "^3.0.3",
+    "sinon": "^19.0.2",
+    "ts-mockito": "^2.6.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.0.3",
+    "vscode-test": "^1.6.1"
+  },
+  "dependencies": {
+    "@octokit/rest": "^21.1.1",
+    "@types/node-fetch": "^2.5.12",
+    "axios": "^1.8.2",
+    "chai": "^4.2.0",
+    "node-fetch": "^2.6.1",
+    "simple-git": "^3.27.0"
+  },
+  "resolutions": {
+    "minimatch": "^3.0.5",
+    "minimist": "^1.2.5"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "codetrackr.initializeRepo",
+        "title": "Initialize Git Repository"
+      },
+      {
+        "command": "codetrackr.startTracking",
+        "title": "Start Tracking Activity"
+      },
+      {
+        "command": "codetrackr.authenticateWithGitHub",
+        "title": "Authenticate with GitHub"
+      },
+      {
+        "command": "codetrackr.getCommits",
+        "title": "Get Commits from GitHub"
+      }
+    ]
+  }
+}
