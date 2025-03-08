@@ -149,15 +149,11 @@ function commitActivitySummary() {
     });
 }
 function activate(context) {
+    console.log('Your extension "codetrackr" is now active!');
     context.subscriptions.push(vscode.commands.registerCommand('codetrackr.initializeRepo', initializeLocalRepo), vscode.commands.registerCommand('codetrackr.startTracking', startActivityTracking), vscode.commands.registerCommand('codetrackr.authenticateWithGitHub', authenticateWithGitHub), vscode.commands.registerCommand('codetrackr.getCommits', getCommitsFromGithub));
     let disposable = vscode.commands.registerCommand('codetrackr.getCommits', () => __awaiter(this, void 0, void 0, function* () {
-        try {
-            const commits = yield getCommitsFromGitHub();
-            vscode.window.showInformationMessage(`Fetched ${commits.length} commits from GitHub.`);
-        }
-        catch (error) {
-            vscode.window.showErrorMessage(`Error fetching commits: ${error.message}`);
-        }
+        vscode.window.showInformationMessage('Fetching commits from GitHub...');
+        // Add your logic to fetch commits here.
     }));
     context.subscriptions.push(disposable);
     startActivityTracking(); // Ensuring tracking starts when extension is activated
@@ -170,6 +166,7 @@ function getCommitsFromGitHub() {
     });
 }
 function deactivate() {
+    console.log('Your extension "codetrackr" has been deactivated');
     if (timer) {
         clearInterval(timer);
     }

@@ -16,6 +16,14 @@
 				"${workspaceFolder}/out/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch Extension",
+			"program": "${workspaceFolder}/node_modules/vscode/bin/dev",
+			"args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+			"stopOnEntry": false
 		}
 	]
 }
